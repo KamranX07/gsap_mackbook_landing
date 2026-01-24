@@ -56,7 +56,7 @@ const Performance = () => {
     }, { scope: sectionRef, dependencies: [isMobile] });
 
     return (
-        <section id="performance">
+        <section id="performance" ref={sectionRef}>
             <h2>Next-level graphics performance. Game on.</h2>
 
             <div className="wrapper">
