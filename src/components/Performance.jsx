@@ -9,9 +9,8 @@ const Performance = () => {
     const sectionRef = useRef(null);
 
     useGSAP(() => {
-        const sectionE1 = sectionRef.current;
-        if (!sectionE1) return;
-
+        const sectionEl = sectionRef.current;
+        if (!sectionEl) return;
         gsap.fromTo(
             ".content p",
             { opacity: 0, y: 10 },
