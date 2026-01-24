@@ -8,6 +8,7 @@ import MacbookModel from "./models/Macbook"
 import { useMediaQuery } from "react-responsive"
 import useMacbookStore from "../store/index"
 import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
 
 const ModelScroll = () => {
     const groupRef = useRef(null);
