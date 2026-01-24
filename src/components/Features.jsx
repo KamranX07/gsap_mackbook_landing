@@ -94,13 +94,12 @@ const Features = () => {
             <Canvas id="f-canvas" camera={{}}>
                 <StudioLights />
                 <ambientLight intensity={0.5} />
-                {/* 3D MODEL */}
                 <ModelScroll />
             </Canvas>
 
             <div className="absolute inset-0">
                 {features.map((feature, index) => (
-                    <div className={clsx('box', `box${index + 1}`, feature.styles)}>
+                    <div key={feature.id} className={clsx('box', `box${index + 1}`, feature.styles)}>
                         <img src={feature.icon} alt={feature.highlight} />
                         <p>
                             <span className="text-white">{feature.highlight}</span>

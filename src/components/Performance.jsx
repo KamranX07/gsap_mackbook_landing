@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { performanceImages, performanceImgPositions } from "../constants/index";
 import { useMediaQuery } from "react-responsive";
 
@@ -10,6 +9,9 @@ const Performance = () => {
     const sectionRef = useRef(null);
 
     useGSAP(() => {
+        const sectionE1 = sectionRef.current;
+        if (!sectionE1) return;
+
         gsap.fromTo(
             ".content p",
             { opacity: 0, y: 10 },
@@ -41,17 +43,19 @@ const Performance = () => {
             },
         });
 
-        performanceImgPositions.forEach((pos) => {
-            if (pos.id === 'p5') return;
+        performanceImgPositions.forEach((item) => {
+            if (item.id === 'p5') return;
 
-            const toVars = {};
+            const selector = `.${item.id}`
+            const vars = {};
 
-            if (pos.left !== undefined) toVars.left = `${pos.left}%`;
-            if (pos.right !== undefined) toVars.right = `${pos.right}%`;
-            if (pos.bottom !== undefined) toVars.bottom = `${pos.bottom}%`;
-            if (pos.transform !== undefined) toVars.transform = pos.transform;
+            if (typeof item.left === "number") vars.left = `${item.left}%`;
+            if (typeof item.right === "number") vars.right = `${item.right}%`;
+            if (typeof item.bottom === "number") vars.bottom = `${item.bottom}%`;
 
-            tl.to(`.${pos.id}`, toVars, 0);
+            if (item.transform) vars.transform = item.transform;
+
+            tl.to(selector, vars, 0);
         });
     }, { scope: sectionRef, dependencies: [isMobile] });
 
